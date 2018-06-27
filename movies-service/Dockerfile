@@ -13,7 +13,7 @@ COPY src/ $HOME/app/src
 RUN chown -R nupp:nupp $HOME/* /usr/local/
 
 WORKDIR $HOME/app
-RUN npm cache clean && \
+RUN npm cache verify && \
   npm install --silent --progress=false --production
 
 RUN chown -R nupp:nupp $HOME/*
