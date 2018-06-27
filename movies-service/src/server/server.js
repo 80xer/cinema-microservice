@@ -1,3 +1,4 @@
+const spdy = require('spdy');
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -24,7 +25,9 @@ const start = options => {
 
     api(app, options);
 
-    const server = app.listen(options.port, () => resolve(server));
+    const server = spdy
+      .createServer(options.ssl, app)
+      .listen(options.port, () => resolve(server));
   });
 };
 
